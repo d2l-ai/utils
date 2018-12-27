@@ -12,7 +12,7 @@ fi
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 IN_DIR="$( cd $1 && pwd )"
 REPO=$2
-REPO_DIR=${IN_DIR}_git
+REPO_DIR=${IN_DIR}-git
 
 # clone the repo, make sure GIT_USERNAME and GIT_PASSWORD have already set
 rm -rf ${REPO_DIR}
@@ -31,6 +31,6 @@ mv $tmp2 ${REPO_DIR}/.git
 cp -r ${IN_DIR}/* ${REPO_DIR}
 
 git config --global push.default simple
-git add -f *
+git add -f -all .
 git commit -am "Upload"
-git push
+git push origin master
