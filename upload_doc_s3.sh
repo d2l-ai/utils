@@ -4,7 +4,7 @@
 #
 # Sample Usage:
 #
-# ./upload_doc.sh build/_build/html/ s3://en.d2l.ai
+# ./upload_doc_s3.sh build/_build/html/ s3://en.d2l.ai
 #
 # Requres awscli is installed
 
@@ -17,7 +17,7 @@ if [ $# -ne 2 ]; then
     exit -1
 fi
 
-DIR=$1
+DIR="$( cd $1 >/dev/null 2>&1 && pwd )"
 BUCKET=$2
 echo "Upload $DIR to $BUCKET"
 
