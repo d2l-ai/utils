@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """Convert .md files into .ipynb files, and optionaly evaluate each code cell.
 """
 import sys
