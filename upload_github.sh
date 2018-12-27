@@ -19,7 +19,7 @@ rm -rf ${REPO_DIR}
 git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${REPO}.git ${REPO_DIR}
 
 # remove all except for README.md. so we can remove deleted files properly
-tmp = $(mktemp)
+tmp=$(mktemp)
 mv ${REPO_DIR}/README.md $tmp
 rm -rf ${REPO_DIR}/*
 mv $tmp ${REPO_DIR}/
