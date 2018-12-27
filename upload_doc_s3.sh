@@ -17,7 +17,7 @@ if [ $# -ne 2 ]; then
     exit -1
 fi
 
-DIR="$( cd $1 >/dev/null 2>&1 && pwd )"
+DIR="$( cd $1 && pwd )"
 BUCKET=$2
 echo "Upload $DIR to $BUCKET"
 
