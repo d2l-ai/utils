@@ -22,11 +22,11 @@ git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${REPO}.git ${REPO_
 tmp=$(mktemp)
 mv ${REPO_DIR}/README.md $tmp
 rm -rf ${REPO_DIR}/*
-mv $tmp ${REPO_DIR}/
+mv $tmp ${REPO_DIR}/README.md
 
 cp -r ${IN_DIR}/* ${REPO_DIR}
 
 git config --global push.default simple
-git add *
+git add -f *
 git commit -am "Upload"
 git push
