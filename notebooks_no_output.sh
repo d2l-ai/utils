@@ -1,6 +1,6 @@
 #!/bin/bash
 # convert all .md files into .ipynb files without evaluation.
-set -ex
+set -e
 
 if [ $# -ne 2 ]; then
     echo "ERROR: needs two arguments. "
