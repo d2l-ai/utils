@@ -31,6 +31,6 @@ mv $tmp2 ${REPO_DIR}/.git
 cp -r ${IN_DIR}/* ${REPO_DIR}
 
 git config --global push.default simple
-git add -f -all .
+git add -f --all .
 git commit -am "Upload"
 git push origin master
