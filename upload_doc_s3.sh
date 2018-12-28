@@ -23,7 +23,7 @@ echo "Upload $DIR to $BUCKET"
 
 # use a temp workspace, because we need to modify (compress) some files later.
 rm -rf ${DIR}_tmp
-cp ${DIR} ${DIR}_tmp
+cp -r ${DIR} ${DIR}_tmp
 DIR=${DIR}_tmp
 
 
