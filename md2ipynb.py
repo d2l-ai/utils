@@ -8,7 +8,6 @@ import time
 import notedown
 import nbformat
 
-
 def is_ascii(character):
     return ord(character) <= 128
 
@@ -49,38 +48,39 @@ def add_space_between_ascii_and_non_ascii(string):
     ret.append(string[-1])
     return ''.join(ret)
 
-assert len(sys.argv) == 3, 'usage: input.md output.ipynb'
-
-# timeout for each notebook, in sec
-timeout = 20 * 60
-
-# the files will be ingored for execution
-ignore_execution = []
-
-input_fn = sys.argv[1]
-output_fn = sys.argv[2]
-
 reader = notedown.MarkdownReader(match='strict')
 
-do_eval = int(os.environ.get('EVAL', True))
+if __name__ == '__main__':
 
-# read
-with open(input_fn, 'r') as f:
-    notebook = reader.read(f)
+    assert len(sys.argv) == 3, 'usage: input.md output.ipynb'
 
-for c in notebook.cells:
-    c.source = add_space_between_ascii_and_non_ascii(c.source)
+    # timeout for each notebook, in sec
+    timeout = 20 * 60
 
-if do_eval and not any([i in input_fn for i in ignore_execution]):
-    tic = time.time()
-    notedown.run(notebook, timeout)
-    print('=== Finished evaluation in %f sec'%(time.time()-tic))
+    # the files will be ingored for execution
+    ignore_execution = []
 
-# write
-# need to add language info to for syntax highlight in HTML
-notebook['metadata'].update({'language_info':{'name':'python'}})
-# ask colab to GPU instance TODO(mli) make it optional
-notebook['metadata'].update({'accelerator':'GPU'})
+    input_fn = sys.argv[1]
+    output_fn = sys.argv[2]
 
-with open(output_fn, 'w') as f:
-    f.write(nbformat.writes(notebook))
+
+    do_eval = int(os.environ.get('EVAL', True))
+
+    # read
+    with open(input_fn, 'r') as f:
+        notebook = reader.read(f)
+
+    for c in notebook.cells:
+        c.source = add_space_between_ascii_and_non_ascii(c.source)
+
+    if do_eval and not any([i in input_fn for i in ignore_execution]):
+        tic = time.time()
+        notedown.run(notebook, timeout)
+        print('=== Finished evaluation in %f sec'%(time.time()-tic))
+
+    # write
+    # need to add language info to for syntax highlight in HTML
+    notebook['metadata'].update({'language_info':{'name':'python'}})
+
+    with open(output_fn, 'w') as f:
+        f.write(nbformat.writes(notebook))
