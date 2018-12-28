@@ -32,13 +32,13 @@ find $DIR \( -iname '*.css' -o -iname '*.js' \) -exec gzip -9 -n {} \; -exec mv 
 aws s3 sync --exclude '*.*' --include '*.css' \
      --content-type 'text/css' \
      --content-encoding 'gzip' \
-     --acl 'public-read' \
+     --acl 'public-read' --quiet \
      $DIR $BUCKET
 
 aws s3 sync --exclude '*.*' --include '*.js' \
      --content-type 'application/javascript' \
      --content-encoding 'gzip' \
-     --acl 'public-read' \
+     --acl 'public-read' --quiet \
      $DIR $BUCKET
 
 # use a large expire time for fonts
