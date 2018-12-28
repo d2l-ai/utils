@@ -8,7 +8,7 @@
 #
 # Requres awscli is installed
 
-set -e
+set -ex
 
 if [ $# -ne 2 ]; then
     echo "ERROR: needs two arguments. "
