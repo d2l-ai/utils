@@ -12,9 +12,10 @@ def get_svg_size(filename):
     for l in lines:
         res = re.findall('<svg.*width="(\d+)pt".*height="(\d+)pt"', l)
         if len(res) > 0:
-            # wired 1.25, maybe due to omni-graffle
-            width = round(1.25*float(res[0][0]))
-            height = round(1.25*float(res[0][1]))
+            # need to scale up, maybe due to omni-graffle
+            scale = 2
+            width = round(scale*float(res[0][0]))
+            height = round(scale*float(res[0][1]))
         res = re.findall('width="([.\d]+)', l)
         if len(res) > 0:
             width = round(float(res[0]))
@@ -53,7 +54,7 @@ def replace_image(source, input_dir, github_repo):
         if img.endswith('.svg'):
             w, h = get_svg_size(input_dir + '/' + img)
             new_l = '<img src="%s" alt="%s" width=%d height=%d/>' % (
-                img_url.replace('.svg', '.png'), cap, int(1.5*w), int(1.5*h))
+                img_url.replace('.svg', '.png'), cap, w, h)
         else:
             new_l = '![%s](%s)' % (cap, img_url)
         lines[i] = new_l
