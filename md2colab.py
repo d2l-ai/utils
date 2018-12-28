@@ -53,7 +53,7 @@ def replace_image(source, input_dir, github_repo):
         if img.endswith('.svg'):
             w, h = get_svg_size(input_dir + '/' + img)
             new_l = '<img src="%s" alt="%s" width=%d height=%d/>' % (
-                img_url.replace('.svg', '.png'), cap, w, h)
+                img_url.replace('.svg', '.png'), cap, int(1.5*w), int(1.5*h))
         else:
             new_l = '![%s](%s)' % (cap, img_url)
         lines[i] = new_l
