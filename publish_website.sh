@@ -7,8 +7,8 @@ if [ $# -ne 1 ]; then
     exit -1
 fi
 
-LANG=$1
+D2L_LANG=$1
 
-conda activate d2l-${LANG}-build
+conda activate d2l-${D2L_LANG}-build
 
-build/utils/upload_doc_s3.sh build/_build/html s3://${LANG}.d2l.ai
+build/utils/upload_doc_s3.sh build/_build/html s3://${D2L_LANG}.d2l.ai

@@ -7,7 +7,7 @@ if [ $# -ne 1 ]; then
     exit -1
 fi
 
-LANG=$1
+D2L_LANG=$1
 
 # avoid putting data downloaded by scripts into the notebook package
 mv build/data build/data-bak
@@ -17,4 +17,4 @@ rm -rf build/data
 mv build/data-bak build/data
 
 # For 1.0
-cp build/_build/html/d2l-${LANG}.zip build/_build/html/d2l-${LANG}-1.0.zip
+cp build/_build/html/d2l-${D2L_LANG}.zip build/_build/html/d2l-${D2L_LANG}-1.0.zip
