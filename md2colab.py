@@ -2,7 +2,7 @@ import sys
 import re
 import os
 import nbformat
-from md2ipynb import reader, add_space_between_ascii_and_non_ascii
+from md2ipynb import reader
 
 def get_svg_size(filename):
     """return width and height of a svg"""
@@ -76,7 +76,6 @@ if __name__ == '__main__':
 
     for c in notebook.cells:
         if c.cell_type == 'markdown':
-            c.source = add_space_between_ascii_and_non_ascii(c.source)
             c.source = replace_image(c.source, input_dir, github_repo)
 
     # add install mxnet at the beginning
