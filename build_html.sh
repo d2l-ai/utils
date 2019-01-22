@@ -12,5 +12,6 @@ D2L_LANG=$1
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda/lib64
 
 conda activate d2l-${D2L_LANG}-build
+pip list
 rm -rf build/_build/
 make html
