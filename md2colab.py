@@ -82,7 +82,7 @@ if __name__ == '__main__':
     # add install mxnet at the beginning
     for c in notebook.cells:
         if c.cell_type =='code' and 'import' in c.source and 'mxnet' in c.source:
-            install = '# Install dependencies before importing\n!pip install mxnet-cu92\n!pip install gluonbook\n\n'
+            install = '# Install dependencies before importing\n!pip install mxnet-cu92\n!pip install d2l\n\n'
             c.source = install + c.source
             break
 
