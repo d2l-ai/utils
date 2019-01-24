@@ -22,7 +22,7 @@ def unnumber_sections(source_file):
                     target_f.write(l.replace('\\subsubsection', '\subsubsection*'))
                 else:
                     target_f.write(l)
-			else:
+            else:
                 target_f.write(l)
     remove(source_file)
     move(target_file, source_file)
