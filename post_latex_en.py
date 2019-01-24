@@ -10,7 +10,7 @@ def unnumber_sections(source_file):
     ch2_reached = False
     # Preface and Using this Book are numbered chapters
     NUM_UNNUMBERED_CHAPS = 2
-	TOC2_START_CHAP = '\\chapter{A Taste of Deep Learning}'
+    TOC2_START_CHAP = '\\chapter{A Taste of Deep Learning}'
 
     UNNUMBERED = {'\\section{Summary}',
                   '\\section{References}',
