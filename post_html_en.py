@@ -17,11 +17,13 @@ source_file = HTML_DIR + '/index.html'
 soup = bs4.BeautifulSoup(open(source_file), 'html.parser')
 
 # Replace title in index.html
-soup.find('title').string = 'Dive into Deep Learning &#8212; An Interactive Book with Math, Code, and Discussions'
+soup.find('title').string = 'Dive into Deep Learning: An Interactive Book with Math, Code, and Discussions'
 
-# Hide  subsection titles of Chapter 1 in index.html
-soup.find('a', {'class': 'reference internal',
-				'href': 'chapter_introduction/deep-learning-intro.html'}).find_next().decompose()
+# Hide subsection titles of Chapter 1 in index.html
+for div in soup.find_all('div', {'class': 'toctree-wrapper compound'}):
+    a = div.find('a', {'class': 'reference internal', 'href': 'chapter_introduction/deep-learning-intro.html'})
+    if a:
+        a.find_next().decompose()
 
 # Write to index.html
 _, target_file = tempfile.mkstemp()
