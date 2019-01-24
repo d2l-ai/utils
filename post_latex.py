@@ -16,11 +16,13 @@ def unnumber_sections(source_file):
             if not ch2_reached and preface_reached:
                 if l.startswith('\section'):
                     target_f.write(l.replace('\\section', '\section*'))
-                if l.startswith('\subsection'):
+                elif l.startswith('\subsection'):
                     target_f.write(l.replace('\\subsection', '\subsection*'))
-                if l.startswith('\subsubsection'):
+                elif l.startswith('\subsubsection'):
                     target_f.write(l.replace('\\subsubsection', '\subsubsection*'))
-            else:
+				else:
+					target_f.write(l)
+			else:
                 target_f.write(l)
     remove(source_file)
     move(target_file, source_file)
