@@ -1,11 +1,11 @@
-from os import remove
+import os
 import re
-from shutil import move
-from tempfile import mkstemp
+import shutil
+import tempfile
 
 
 def unnumber_sections(source_file):
-    _, target_file = mkstemp()
+    _, target_file = tempfile.mkstemp()
     preface_reached = False
     ch2_reached = False
     # Preface and Using this Book are numbered chapters
@@ -54,8 +54,8 @@ def unnumber_sections(source_file):
             else:
                 target_f.write(l)
 
-    remove(source_file)
-    move(target_file, source_file)
+    os.remove(source_file)
+    shutil.move(target_file, source_file)
 
 
 tex_file = 'build/_build/latex/d2l-zh.tex'
