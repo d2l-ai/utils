@@ -14,11 +14,15 @@ def unnumber_sections(source_file):
     TOC2_START_CHAP_NO = 4
 
     UNNUMBERED = {'\\section{Summary}',
+                  '\\section{Reference}',
                   '\\section{References}',
+                  '\\section{Problem}',
                   '\\section{Problems}',
                   '\\section{Scan the QR Code to Discuss}',
                   '\\subsection{Summary}',
+                  '\\subsection{Reference}',
                   '\\subsection{References}',
+                  '\\subsection{Problem}',
                   '\\subsection{Problems}',
                   '\\subsection{Scan the QR Code to Discuss}'}
 
