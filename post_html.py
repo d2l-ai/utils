@@ -15,9 +15,14 @@ p.wait()
 # Edit index.html
 source_file = HTML_DIR + '/index.html'
 soup = bs4.BeautifulSoup(open(source_file), 'html.parser')
+lang = soup.find('html')['lang']
 
 # Replace title in index.html
-soup.find('title').string = 'Dive into Deep Learning: An Interactive Book with Math, Code, and Discussions'
+if lang == 'en':
+    title = 'Dive into Deep Learning: An Interactive Book with Math, Code, and Discussions'
+elif lang == 'zh_CN':
+    title = '《动手学深度学习》：面向中文读者、能运行、可讨论'
+soup.find('title').string = title
 
 # Hide subsection titles of Chapter 1 in index.html
 for div in soup.find_all('div', {'class': 'toctree-wrapper compound'}):
