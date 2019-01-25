@@ -33,7 +33,7 @@ for div in soup.find_all('div', {'class': 'toctree-wrapper compound'}):
 # Write to index.html
 _, target_file = tempfile.mkstemp()
 with open(target_file, 'w') as target_f:
-	target_f.write(str(soup))
+    target_f.write(str(soup))
 
 os.remove(source_file)
 shutil.move(target_file, source_file)
