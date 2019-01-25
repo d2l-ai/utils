@@ -1,6 +1,7 @@
 import os
 import re
 import shutil
+import sys
 import tempfile
 
 TEX_FILE_EN = 'build/_build/latex/d2l-en.tex'
