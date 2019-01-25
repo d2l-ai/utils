@@ -105,5 +105,5 @@ if __name__ == '__main__':
         num_unnumbered_chaps = NUM_UNNUMBERED_CHAPS_ZH
         toc2_start_chap_no = TOC2_START_CHAP_NO_ZH
 
-    unnumber_sections(source_file, unnumbered, num_unnumbered_chaps, toc2_start_chap_no)
+    unnumber_sections(tex_file, unnumbered, num_unnumbered_chaps, toc2_start_chap_no)
 
