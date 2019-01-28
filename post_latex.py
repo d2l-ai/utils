@@ -12,14 +12,14 @@ TEX_FILE_ZH = 'build/_build/latex/d2l-zh.tex'
 UNNUMBERED_EN = {'\\section{Summary}',
                  '\\section{Reference}',
                  '\\section{References}',
-                 '\\section{Problem}',
-                 '\\section{Problems}',
+                 '\\section{Exercise}',
+                 '\\section{Exercises}',
                  '\\section{Scan the QR Code to Discuss}',
                  '\\subsection{Summary}',
                  '\\subsection{Reference}',
                  '\\subsection{References}',
-                 '\\subsection{Problem}',
-                 '\\subsection{Problems}',
+                 '\\subsection{Exercise}',
+                 '\\subsection{Exercises}',
                  '\\subsection{Scan the QR Code to Discuss}'}
 
 UNNUMBERED_ZH = {'\\section{小结}',
@@ -89,7 +89,7 @@ def unnumber_sections(source_file, unnumbered, num_unnumbered_chaps, toc2_start_
                         target_f.write(l.replace('\\subsubsection', '\\subsubsection*'))
                     else:
                         target_f.write(l)
-                # Unnumber summary, references, problems, qr code in numbered chapters
+                # Unnumber summary, references, exercises, qr code in numbered chapters
                 elif l.rstrip() in unnumbered:
                     target_f.write(l.replace('section{', 'section*{'))
                 else:
