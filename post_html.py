@@ -24,11 +24,18 @@ elif lang == 'zh_CN':
     title = '《动手学深度学习》：面向中文读者、能运行、可讨论'
 soup.find('title').string = title
 
-# Hide subsection titles of Chapter 1 in index.html
+# Hide unnumbered subsection titles of Chapter 1 in index.html
 for div in soup.find_all('div', {'class': 'toctree-wrapper compound'}):
-    a = div.find('a', {'class': 'reference internal', 'href': 'chapter_introduction/deep-learning-intro.html'})
-    if a:
-        a.find_next().decompose()
+    class_name = 'reference internal'
+    href_prefix = 'chapter_introduction/intro.html'
+    anchors = ['#Summary', '#Exercises', '#References',
+               '#Scan-the-QR-Code-to-Discuss']
+    for anchor in anchors:
+        a = div.find('a', {'class': class_name, 'href': href_prefix + anchor})
+        if a:
+            li = a.find_parent()
+            if li:
+                li.decompose()
 
 # Write to index.html
 _, target_file = tempfile.mkstemp()
