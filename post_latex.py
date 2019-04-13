@@ -167,5 +167,4 @@ if __name__ == '__main__':
 
     unnumber_sections(tex_file, unnumbered, num_unnumbered_chaps, toc2_start_chap_no)
     edit_author_style(MANUAL_STY_FILE)
-    center_graphics(tex_file)
-
+    # center_graphics(tex_file)
