@@ -8,6 +8,10 @@ import time
 import notedown
 import nbformat
 
+def hyperlink_md_2_ipynb(string):
+    # replace .md to .ipynb in hyperlinks
+    return string.replace(".md)", ".ipynb)")
+
 reader = notedown.MarkdownReader(match='strict')
 
 if __name__ == '__main__':
@@ -29,6 +33,11 @@ if __name__ == '__main__':
     # read
     with open(input_fn, 'r') as f:
         notebook = reader.read(f)
+
+    # fix hyperlink extension (.md to .ipynb) for markdown cells
+    for c in notebook.cells:
+        if c.cell_type == "markdown":
+            c.source = hyperlink_md_2_ipynb(c.source)
 
     if do_eval and not any([i in input_fn for i in ignore_execution]):
         tic = time.time()
