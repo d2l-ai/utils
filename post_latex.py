@@ -134,7 +134,7 @@ def center_graphics(source_file):
                             rest_s = token[len(SIG):]
                             parenthesis_cnt = 0
                             i = 0
-                            assert rest_s[0] = '{', 'Valid latex syntax \sphinxincludegraphics{} is expected.'
+                            assert rest_s[0] == '{', 'Valid latex syntax \sphinxincludegraphics{} is expected.'
                             for s in rest_s:
                                 if s == '{':
                                     parenthesis_cnt += 1
