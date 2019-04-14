@@ -105,7 +105,7 @@ def edit_author_style(source_file):
                 else:
                     target_f.write(l)
 
-
+# Only works for nbsphinx==0.3.5.
 def center_graphics(source_file):
     SIG = 'sphinxincludegraphics'
     with _TempFile(source_file) as target_file:
@@ -173,4 +173,4 @@ if __name__ == '__main__':
 
     unnumber_sections(tex_file, unnumbered, num_unnumbered_chaps, toc2_start_chap_no)
     edit_author_style(MANUAL_STY_FILE)
-    #center_graphics(tex_file)
+    center_graphics(tex_file)  # Only works for nbsphinx==0.3.5
