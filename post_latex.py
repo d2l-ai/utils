@@ -107,6 +107,7 @@ def edit_author_style(source_file):
 
 
 def center_graphics(source_file):
+    SIG = 'sphinxincludegraphics'
     with _TempFile(source_file) as target_file:
         tabulary_cnt = 0
         figure_cnt = 0
@@ -122,24 +123,28 @@ def center_graphics(source_file):
                 elif _tag_in_line('end{figure}', l):
                     figure_cnt -= 1
 
+                # 'tabulary' and 'figure' blocks do include '\centering', so only center
+                # '\sphinxincludegraphics{}' by enclosing it with '\begin{center}'
+                # '\end{center}'
                 if tabulary_cnt == 0 and figure_cnt == 0 and _tag_in_line('sphinxincludegraphics', l):
                     outs = []
                     for token in l.split('\\'):
-                        SIG = 'sphinxincludegraphics'
                         if token.startswith(SIG):
                             with_centers = ['\\begin{center}']
                             rest_s = token[len(SIG):]
                             parenthesis_cnt = 0
-                            for i, s in enumerate(rest_s):
+                            i = 0
+                            assert rest_s[0] = '{', 'Valid latex syntax \sphinxincludegraphics{} is expected.'
+                            for s in rest_s:
                                 if s == '{':
                                     parenthesis_cnt += 1
                                 elif s == '}':
                                     parenthesis_cnt -= 1
+                                i += 1
                                 if parenthesis_cnt == 0:
                                     break
-                            with_centers.append('\\sphinxincludegraphics' + rest_s[:i+1])
-                            with_centers.append('\\end{center}')
-                            with_centers.append(rest_s[i+1:])
+                            with_centers.append('\\' + SIG + rest_s[:i+1] + '\\end{center}'
+                                                + rest_s[i+1:])
                             target_f.write(''.join(with_centers))
                         else:
                             outs.append(token)
@@ -167,4 +172,4 @@ if __name__ == '__main__':
 
     unnumber_sections(tex_file, unnumbered, num_unnumbered_chaps, toc2_start_chap_no)
     edit_author_style(MANUAL_STY_FILE)
-    # center_graphics(tex_file)
+    center_graphics(tex_file)
