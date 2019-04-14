@@ -134,13 +134,14 @@ def center_graphics(source_file):
                             rest_s = token[len(SIG):]
                             parenthesis_cnt = 0
                             i = 0
-                            assert rest_s[0] == '{', 'Valid latex syntax \sphinxincludegraphics{} is expected.'
+                            seen_parentheses = False
                             for s in rest_s:
                                 if s == '{':
                                     parenthesis_cnt += 1
                                 elif s == '}':
                                     parenthesis_cnt -= 1
-                                if parenthesis_cnt == 0:
+                                    seen_parentheses = True
+                                if parenthesis_cnt == 0 and seen_parentheses:
                                     break
                                 i += 1
                             with_centers.append('\\' + SIG + rest_s[:i+1] + '\\end{center}'
