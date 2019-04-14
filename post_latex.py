@@ -140,9 +140,9 @@ def center_graphics(source_file):
                                     parenthesis_cnt += 1
                                 elif s == '}':
                                     parenthesis_cnt -= 1
-                                i += 1
                                 if parenthesis_cnt == 0:
                                     break
+                                i += 1
                             with_centers.append('\\' + SIG + rest_s[:i+1] + '\\end{center}'
                                                 + rest_s[i+1:])
                             target_f.write(''.join(with_centers))
