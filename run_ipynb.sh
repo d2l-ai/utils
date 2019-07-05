@@ -12,5 +12,5 @@ NOTEBOOKS=$1
 
 for f in $NOTEBOOKS; do
 	echo "==Executing $f"
-	jupyter nbconvert --execute --ExecutePreprocessor.kernel_name=python3 --to notebook --inplace $f
+	jupyter nbconvert --execute --ExecutePreprocessor.kernel_name=python3 --to notebook --ExecutePreprocessor.timeout=1200 --inplace $f
 done
