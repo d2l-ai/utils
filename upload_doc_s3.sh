@@ -48,3 +48,12 @@ aws s3 sync --exclude '*.*' --include '*.woff' --include '*.woff2' \
      $DIR $BUCKET
 
 aws s3 sync --delete $DIR $BUCKET --acl 'public-read' --quiet
+
+
+# Copy and upload stable release 1.0
+if [ $BUCKET == s3://zh.d2l.ai ]; then
+    echo "Copying and uploading stable release: d2l-zh-1.0.zip"
+    aws s3 cp \
+        s3://d2l-webdata/releases/d2l-zh/d2l-zh-1.0.zip \
+        $BUCKET --acl 'public-read' --quiet
+fi

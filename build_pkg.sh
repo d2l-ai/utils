@@ -16,5 +16,10 @@ make pkg
 rm -rf build/data
 mv build/data-bak build/data
 
-# For 1.0
-cp build/_build/html/d2l-${D2L_LANG}.zip build/_build/html/d2l-${D2L_LANG}-1.0.zip
+
+if [ $D2L_LANG == zh ]; then
+    # For bump version 1.1
+    echo "Copying current build to d2l-zh-1.1.zip"
+    cp build/_build/html/d2l-${D2L_LANG}.zip build/_build/html/d2l-${D2L_LANG}-1.1.zip
+fi
+
