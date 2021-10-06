@@ -11,4 +11,8 @@ D2L_LANG=$1
 
 conda activate d2l-${D2L_LANG}-build
 
-build/utils/upload_doc_s3.sh build/_build/html s3://${D2L_LANG}.d2l.ai
+if [ $D2L_LANG == zh ]; then
+    build/utils/upload_doc_s3.sh build/_build/html s3://${D2L_LANG}-v1.d2l.ai
+else
+    build/utils/upload_doc_s3.sh build/_build/html s3://${D2L_LANG}.d2l.ai
+fi
