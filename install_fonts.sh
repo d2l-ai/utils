@@ -55,4 +55,4 @@ unzip SourceHanSerifJ_SB-H.zip
 sudo mv SourceHanSansJ SourceHanSerifJ_EL-M SourceHanSerifJ_SB-H /usr/share/fonts/opentype/
 sudo fc-cache -f -v
 
-rm Source*.zip
+rm source*.zip
