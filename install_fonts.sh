@@ -8,6 +8,9 @@
 
 # Make sure unzip is installed already, if not, run:
 # sudo apt-get install unzip
+
+# fc-cache is required, if not already installed, run:
+# sudo apt install fontconfig
 ###########################################################
 
 
